@@ -63,9 +63,12 @@ function List(list){
 
 function ListItem(todo){
     return `
-        <li class="list-group-item todo ${todo.checked ? "text-decoration-line-through":""}" data-id="${todo.id}">
-            <input class="form-check-input me-1 checkbox" type="checkbox" ${todo.checked ? 'checked="checked"' : "" } />
-            ${todo.text}
+        <li class="list-group-item d-flex justify-content-between align-items-center todo " data-id="${todo.id}">
+            <label>
+                <input class="form-check-input me-1 checkbox" type="checkbox" ${todo.checked ? 'checked="checked"' : ""} data-id="${todo.id}" />
+                <span class="${todo.checked ? "text-decoration-line-through":""}"> ${todo.text}</span>
+            </label>
+            <span class="badge bg-danger rounded-pill">x</span>
         </li>
     `;
 }
@@ -115,8 +118,8 @@ document.addEventListener('click', (ev)=>{
         const id = parseInt(ev.target.dataset.id);
         testList=checkTodo(id, testList);
         render(testList)
-
+        
     }
-  
+ 
 })
 
